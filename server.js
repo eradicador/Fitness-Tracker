@@ -13,6 +13,7 @@ const db = require("./models");
 const app = express();
 //call use() on the Express application to use morgan HTTP request logger middleware
 app.use(logger("dev"));
+//express Middleware:
 //parses incoming requests with URL-encoded payloads
 app.use(express.urlencoded({ extended: true }));
 //parses incoming requests with JSON payloads
@@ -21,6 +22,11 @@ app.use(express.json());
 app.use(express.static("public"));
 //mongoose.connect() method to connect to MongoDB 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnesstrackerdb", { useNewUrlParser: true });
+
+// routes
+app.use(require("./routes/apiRoutes.js"));
+app.use(require("./routes/htmlRoutes.js"));
+
 //express is listening for PORT
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
