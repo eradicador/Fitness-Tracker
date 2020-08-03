@@ -24,7 +24,7 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnesstrackerdb", { useNewUrlParser: true });
 
 // routes
-app.use(require("./routes/apiRoutes.js"));
+app.use(require("./routes/api.js"));
 app.use(require("./routes/htmlRoutes.js"));
 
 //express is listening for PORT
